@@ -43,7 +43,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul id="nav-list" class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle text-white"
@@ -69,17 +69,26 @@
               <a class="nav-link text-white" href="#">Link</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white">Careers</a>
+              <a class="nav-link text-white"
+                >Careers
+                <span class="position-absolute badge rounded-pill bg-danger">
+                  99+
+                </span>
+              </a>
             </li>
           </ul>
-
           <button
-            class="btn btn btn-outline-secondary text-white me-4"
+            id="submit-button"
+            class="btn btn btn-outline-secondary text-white me-4 order-2 order-md-0"
             type="submit"
           >
             Sign up
           </button>
-          <button class="btn btn btn-outline-primary" type="submit">
+          <button
+            id="login-button"
+            class="btn btn btn-outline-primary order-1 order-md-0"
+            type="submit"
+          >
             Login
           </button>
         </div>
@@ -105,7 +114,7 @@
             <div class="col">
               <div class="card" style="width: 30rem">
                 <img
-                  src="../images/banner1.jpg"
+                  src="../images/feature1.jpg"
                   class="card-img-top"
                   alt="..."
                 />
@@ -134,7 +143,7 @@
           <div class="row flex-nowrap">
             <div class="col-8">
               <h1 class="display-4 text-wrap text-light fw-bolder">
-                Unlock the Power of Teamwork
+                Master the Art of Problem-Solving
               </h1>
               <p class="card-text fs-5 text-wrap text-light">
                 Our Collaboration Feature offers a suite of tools and
@@ -146,7 +155,7 @@
             <div class="col">
               <div class="card" style="width: 30rem">
                 <img
-                  src="../images/banner1.jpg"
+                  src="../images/feature2.jpg"
                   class="card-img-top"
                   alt="..."
                 />
@@ -165,7 +174,7 @@
             <div class="col">
               <div class="card" style="width: 30rem">
                 <img
-                  src="../images/banner1.jpg"
+                  src="../images/feature3.jpg"
                   class="card-img-top"
                   alt="..."
                 />
@@ -178,7 +187,7 @@
             </div>
             <div class="col-8">
               <h1 class="display-4 text-wrap text-light fw-bolder">
-                Unlock the Power of Teamwork
+                Your Gateway to Career Advancement
               </h1>
               <p class="card-text fs-5 text-wrap text-light">
                 Our Collaboration Feature offers a suite of tools and
@@ -197,9 +206,13 @@
         <div class="row">
           <div class="col-md-4">
             <div class="card">
-              <img src="group1.jpg" class="card-img-top" alt="Group 1" />
+              <img
+                src="../images/group1.jpeg"
+                class="card-img-top img-fluid"
+                alt="Group 1"
+              />
               <div class="card-body">
-                <h5 class="card-title">Group Name 1</h5>
+                <h5 class="card-title">Code Crusaders</h5>
                 <p class="card-text">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 </p>
@@ -210,7 +223,11 @@
 
           <div class="col-md-4">
             <div class="card">
-              <img src="group2.jpg" class="card-img-top" alt="Group 2" />
+              <img
+                src="../images/group2.jpeg"
+                class="card-img-top"
+                alt="Group 2"
+              />
               <div class="card-body">
                 <h5 class="card-title">Group Name 2</h5>
                 <p class="card-text">
@@ -224,7 +241,11 @@
 
           <div class="col-md-4">
             <div class="card">
-              <img src="group3.jpg" class="card-img-top" alt="Group 3" />
+              <img
+                src="../images/group3.jpeg"
+                class="card-img-top"
+                alt="Group 3"
+              />
               <div class="card-body">
                 <h5 class="card-title">Group Name 3</h5>
                 <p class="card-text">
