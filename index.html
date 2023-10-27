@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../css/main.css" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+
+    <title>Home</title>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse position-relative"
+          id="navbarNavDropdown"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pricing</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Dropdown link
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <button
+                type="button"
+                class="btn position-relative nav-item"
+                data-bs-container="body"
+                data-bs-toggle="popover"
+                data-bs-placement="bottom"
+                data-bs-content="Welcome to CodeSync!!!"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  class="hover:text-text-primary dark:hover:text-text-primary"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M6.20374 15.8174C6.18177 15.8563 6.15975 15.8945 6.13771 15.9322H17.8623C17.8403 15.8945 17.8182 15.8563 17.7963 15.8174C16.8756 14.1898 16.3333 12.0111 16.3333 9.21793C16.3333 6.93819 14.4012 5.07507 12 5.07507C9.5988 5.07507 7.66667 6.93819 7.66667 9.21793C7.66667 12.0111 7.12442 14.1898 6.20374 15.8174ZM20 17.9322H4.00001C3.00196 17.9322 2.61971 16.6307 3.45925 16.091C3.66114 15.9612 4.0464 15.5691 4.46294 14.8327C5.20893 13.5139 5.66667 11.6748 5.66667 9.21793C5.66667 5.81702 8.51018 3.07507 12 3.07507C15.4898 3.07507 18.3333 5.81702 18.3333 9.21793C18.3333 11.6748 18.7911 13.5139 19.5371 14.8327C19.9536 15.5691 20.3389 15.9612 20.5408 16.091C21.3803 16.6307 20.9981 17.9322 20 17.9322ZM12.9372 19.2783C13.2219 18.805 13.8363 18.6521 14.3096 18.9368C14.7828 19.2215 14.9357 19.836 14.651 20.3092C14.0976 21.2292 13.0875 21.7902 12 21.7902C10.9125 21.7902 9.90245 21.2292 9.34903 20.3092C9.06434 19.836 9.2172 19.2215 9.69045 18.9368C10.1637 18.6521 10.7781 18.805 11.0628 19.2783C11.2515 19.5919 11.6085 19.7902 12 19.7902C12.3915 19.7902 12.7485 19.5919 12.9372 19.2783Z"
+                  ></path>
+                </svg>
+                <span
+                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                >
+                  1
+                  <span class="visually-hidden">unread messages</span>
+                </span>
+              </button>
+            </li>
+            <li class="nav-item me-10">
+              <button class="btn btn-primary" type="submit">Signup</button>
+            </li>
+            <li class="nav-item">
+              <button class="btn btn-light" type="submit">Login</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <div class="banner-container">
+        <div class="banner">
+          <h1 class="display-1">
+            An Amazing Collaborative
+            <br />
+            Experience.
+          </h1>
+        </div>
+      </div>
+
+      <section class="features">
+        <div class="container text-center mt-5">
+          <div class="row flex-nowrap">
+            <div class="col">
+              <div class="card" style="width: 30rem">
+                <img
+                  src="../images/banner1.jpg"
+                  class="card-img-top"
+                  alt="..."
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Collaboration</h5>
+
+                  <a href="#" class="btn btn-primary">Collaborate</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-8">
+              <h1 class="display-4 text-wrap text-light fw-bolder">
+                Unlock the Power of Teamwork
+              </h1>
+              <p class="card-text fs-5 text-wrap text-light">
+                Our Collaboration Feature offers a suite of tools and
+                capabilities that make working with others a breeze. Whether
+                you're a remote team, a global organization, or a small group,
+                our feature has you covered.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="container text-center mt-5">
+          <div class="row flex-nowrap">
+            <div class="col-8">
+              <h1 class="display-4 text-wrap text-light fw-bolder">
+                Unlock the Power of Teamwork
+              </h1>
+              <p class="card-text fs-5 text-wrap text-light">
+                Our Collaboration Feature offers a suite of tools and
+                capabilities that make working with others a breeze. Whether
+                you're a remote team, a global organization, or a small group,
+                our feature has you covered.
+              </p>
+            </div>
+            <div class="col">
+              <div class="card" style="width: 30rem">
+                <img
+                  src="../images/banner1.jpg"
+                  class="card-img-top"
+                  alt="..."
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Collaboration</h5>
+
+                  <a href="#" class="btn btn-primary">Collaborate</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container text-center mt-5">
+          <div class="row flex-nowrap">
+            <div class="col">
+              <div class="card" style="width: 30rem">
+                <img
+                  src="../images/banner1.jpg"
+                  class="card-img-top"
+                  alt="..."
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Collaboration</h5>
+
+                  <a href="#" class="btn btn-primary">Collaborate</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-8">
+              <h1 class="display-4 text-wrap text-light fw-bolder">
+                Unlock the Power of Teamwork
+              </h1>
+              <p class="card-text fs-5 text-wrap text-light">
+                Our Collaboration Feature offers a suite of tools and
+                capabilities that make working with others a breeze. Whether
+                you're a remote team, a global organization, or a small group,
+                our feature has you covered.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="container">
+        <h1 class="mt-4 mb-4">Popular Groups</h1>
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card">
+              <img src="group1.jpg" class="card-img-top" alt="Group 1" />
+              <div class="card-body">
+                <h5 class="card-title">Group Name 1</h5>
+                <p class="card-text">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </p>
+                <a href="#" class="btn btn-primary">Learn More</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card">
+              <img src="group2.jpg" class="card-img-top" alt="Group 2" />
+              <div class="card-body">
+                <h5 class="card-title">Group Name 2</h5>
+                <p class="card-text">
+                  Sed do eiusmod tempor incididunt ut labore et dolore magna
+                  aliqua.
+                </p>
+                <a href="#" class="btn btn-primary">Learn More</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card">
+              <img src="group3.jpg" class="card-img-top" alt="Group 3" />
+              <div class="card-body">
+                <h5 class="card-title">Group Name 3</h5>
+                <p class="card-text">
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris.
+                </p>
+                <a href="#" class="btn btn-primary">Learn More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <h1 class="mt-4 mb-4">Blogs</h1>
+        <div
+          id="carouselExampleAutoplaying"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="..." class="d-block w-100" alt="..." />
+              <div class="carousel-caption d-none d-md-block">
+                <h5>First slide label</h5>
+                <p>
+                  Some representative placeholder content for the first slide.
+                </p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="..." class="d-block w-100" alt="..." />
+              <div class="carousel-caption d-none d-md-block">
+                <h5>First slide label</h5>
+                <p>
+                  Some representative placeholder content for the first slide.
+                </p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="..." class="d-block w-100" alt="..." />
+              <div class="carousel-caption d-none d-md-block">
+                <h5>First slide label</h5>
+                <p>
+                  Some representative placeholder content for the first slide.
+                </p>
+              </div>
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <script src="../main.js"></script>
+  </body>
+</html>

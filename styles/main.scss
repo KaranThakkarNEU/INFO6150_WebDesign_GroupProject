@@ -1,0 +1,25 @@
+body {
+  background-image: url("../images/background.jpg");
+  background-size: cover;
+  overflow-x: hidden;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.banner-container {
+  position: relative;
+  color: white;
+  font-size: 30px;
+  height: 60vh;
+
+  .banner {
+    position: absolute;
+    top: 50%;
+    left: 95px;
+  }
+}
+
+.mainImage {
+  margin-top: 40px;
+}
