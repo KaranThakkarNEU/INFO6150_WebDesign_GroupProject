@@ -6,23 +6,39 @@ const passwordRegex = new RegExp(
 
 let isEmail = false;
 let isPassword = false;
+var emailIdEl = "";
+var passwordEl = "";
+var alertPlaceholder = "";
+
+window.addEventListener("DOMContentLoaded", (event) => {
+  emailIdEl = document.getElementById("email");
+  passwordEl = document.getElementById("password");
+
+  alertPlaceholder = document.getElementById("liveAlertPlaceholder");
+
+  if (emailIdEl && passwordEl) {
+    emailIdEl.addEventListener("blur", () => {
+      validateLoginForm("email");
+    });
+    passwordEl.addEventListener("blur", () => {
+      validateLoginForm("password");
+    });
+  }
+});
 
 function validateLoginForm(fieldName) {
-  var emailIdVal = document.getElementById("email").value;
-  var passwordVal = document.getElementById("password").value;
-
   switch (fieldName) {
     case "email":
-      if (!emailIdVal) {
+      if (!emailIdEl.value) {
         isEmail = false;
         setErrorMsg("email", "Please enter email id");
-      } else if (!emailIdVal.match(emailIdRegex)) {
+      } else if (!emailIdEl.value.match(emailIdRegex)) {
         isEmail = false;
         setErrorMsg(
           "email",
           "Enter valid email address ending with @northeastern.edu"
         );
-      } else if (emailIdVal.length > 50 || emailIdVal.length < 17) {
+      } else if (emailIdEl.value.length > 50 || emailIdEl.length < 17) {
         isEmail = false;
         setErrorMsg(
           "email",
@@ -35,10 +51,10 @@ function validateLoginForm(fieldName) {
       break;
 
     case "password":
-      if (!passwordVal) {
+      if (!passwordEl.value) {
         isPassword = false;
         setErrorMsg("password", "Please enter password");
-      } else if (!passwordVal.match(passwordRegex)) {
+      } else if (!passwordEl.value.match(passwordRegex)) {
         isPassword = false;
         setErrorMsg(
           "password",
@@ -78,7 +94,54 @@ function setSuccessMsg(element, message) {
 }
 
 function login() {
-  if (!isEmail || !isPassword) {
-    alert("Please enter fill all the fields correctly");
-  }
+  let loginBtn = document.getElementById("liveAlertBtn");
+  const form = document.getElementById("loginForm").addEventListener(
+    "submit",
+    (event) => {
+      event.preventDefault();
+
+      loginBtn.innerHTML =
+        '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
+
+      if (!emailIdEl.value || !passwordEl.value) {
+        appendAlert("Please fill all fields!", "danger");
+        loginBtn.innerHTML = "Login";
+        return false;
+      } else {
+        appendAlert("Login successful", "success");
+        window.location.href = "index.html";
+        loginBtn.innerHTML = "Login";
+        return true;
+      }
+    },
+    { once: true }
+  );
 }
+
+const appendAlert = (message, type) => {
+  const wrapper = document.createElement("div");
+  wrapper.className = "d-flex justify-content-center login-alert";
+  wrapper.innerHTML = [
+    `<div class="alert alert-${type} alert-dismissible fade show" role="alert">`,
+    `<div>${message}</div>`,
+    '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+    "</div>",
+  ].join("");
+
+  alertPlaceholder.append(wrapper);
+
+  window.setTimeout(function () {
+    $(".alert")
+      .fadeTo(500, 0)
+      .slideUp(500, function () {
+        var elementsToRemove = document.querySelectorAll(".login-alert");
+
+        // Remove each selected element from the DOM
+        for (var i = 0; i < elementsToRemove.length; i++) {
+          elementsToRemove[i].remove();
+        }
+
+        alertPlaceholder = document.getElementById("liveAlertPlaceholder");
+      });
+  }, 3000);
+};
