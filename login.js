@@ -55,12 +55,14 @@ function validateLoginForm(fieldName) {
         isPassword = false;
         setErrorMsg("password", "Please enter password");
       } else if (!passwordEl.value.match(passwordRegex)) {
+        console.log(isPassword);
         isPassword = false;
         setErrorMsg(
           "password",
           "Password must contain minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character"
         );
       } else {
+        console.log(isPassword);
         isPassword = true;
         setSuccessMsg("password", "Looks good!");
       }
@@ -103,7 +105,7 @@ function login() {
       loginBtn.innerHTML =
         '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
 
-      if (!emailIdEl.value || !passwordEl.value) {
+      if (!isEmail || !isPassword) {
         appendAlert("Please fill all fields!", "danger");
         loginBtn.innerHTML = "Login";
         return false;
