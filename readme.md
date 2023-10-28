@@ -35,4 +35,5 @@ resource in the educational and programming landscape.</p>
   <li>Badges: <p>Small count and labelling component</p></li>
   <li>Validation: <p>Provide valuable actionable feedbackto users</p></li>
   <li>Navbar Brand: <p>It serves as a clickable link and redirects the user</p></li>
+  <li>Progress: <p>To check till where user have scrolled</p></li>
 </ol>
