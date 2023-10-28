@@ -34,7 +34,6 @@ resource in the educational and programming landscape.</p>
   <li>Validation: <p>Provide valuable actionable feedbackto users</p></li>
   <li>Progress: <p>To check till where user have scrolled</p></li>
   <li>Checkbox: <p>For remeber me in login page</p></li>
-  <li>Spinner: <p>When user clicks on login button</p></li>
   <li>Alert: <p>To show when user logged in</p></li>
   <li>Button: <p>Login button, sign up and google login button</p></li>
 </ol>
