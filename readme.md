@@ -8,7 +8,7 @@
   <li>Niyati Ashar - 002278810</li>
 </ul>
 
-<h4>CODE COLLABORATION:</h4>
+<h4>CODEAB:</h4>
 <p>A platform designed to facilitate peer collaboration and problem-solving in coding which serves as a valuable
 resource in the educational and programming landscape.</p>
 
