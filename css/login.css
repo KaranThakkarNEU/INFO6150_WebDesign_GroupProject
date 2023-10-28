@@ -1,0 +1,39 @@
+html {
+  background-image: url(../images/login_bg.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Times New Roman", Times, serif;
+  background: none;
+}
+
+.box-area {
+  width: 900px;
+  background-color: #f8f8f8;
+}
+.box-area .left-box {
+  background-image: url(../images/login_form.jpg);
+  background-color: #f0f0f0;
+  background-position: center;
+  background-size: cover;
+  height: 450px;
+}
+.box-area .left-box .img-text {
+  font-weight: bold;
+  background: -webkit-linear-gradient(rgb(188, 12, 241), rgb(212, 4, 4));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.google-btn {
+  background-color: #f0f0f0;
+}/*# sourceMappingURL=login.css.map */
