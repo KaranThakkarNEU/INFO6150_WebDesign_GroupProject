@@ -113,6 +113,7 @@ function login() {
         appendAlert("Login successful", "success");
         window.location.href = "index.html";
         loginBtn.innerHTML = "Login";
+        document.getElementById("loginForm").reset();
         return true;
       }
     },
