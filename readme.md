@@ -1,39 +1,46 @@
-# Group Assignment 6
+# Getting Started with Create React App
 
-<h4>Team Members:</h4>
-<ul>
-  <li>Karan Thakkar - 002644239</li>
-  <li>Adwait Relekar - 002839566</li>
-  <li>Dipti Shevalekar - 002245703</li>
-  <li>Niyati Ashar - 002278810</li>
-</ul>
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-<h4>CODEAB:</h4>
-<p>A platform designed to facilitate peer collaboration and problem-solving in coding which serves as a valuable
-resource in the educational and programming landscape.</p>
+## Available Scripts
 
-<h4>PURPOSE:</h4>
-<p>Our Collaboration Feature offers a suite of tools and capabilities that make working with others a breeze. Whether you're a remote team, a global organization, or a small group,our feature has you covered.</p>
+In the project directory, you can run:
 
-<h4>Use of 16+ Bootstrap Components:</h4>
+### `npm start`
 
-<ol>
-  <li>Navbar: <p>Used navigation for any website for accessing information</p></li>
-  <li>Button: <p>Custom buttons  or actions n forms ,dialogs nd other</p></li>
-  <li>Typography: <p>Topography includes global settings , headings body text, list and many more</p></li>
-  <li>Carousel: <p>A slideshow component for cycling hrough elements -images or slides of text</p></li>
-  <li>Modal component: <p>Vertically cenetered modal is created using the modal component</p></li>
-  <li>Drop down: <p>Toggle contextual overlays for displaying list</p></li>
-  <li>Card Compenent:<p>Flexible and extensible content container</p></li>
-  <li><p>Form Compenents and Input Groups: Control styles layout options and custom components are used for forms, input groups attach lables</p></li>
-  <li>Footer: <p>An additional navigation component for providing buttons, links, info</p></li>
-  <li>Grid Component: <p>Used to built layouts of all shape and size</p></li>
-  <li>Copyright and Text: <p>Text utilities to control the alignment</p></li>
-  <li>List: <p>List are flexible and powerful component or displaying a series of items</p></li>
-  <li>Badges: <p>Small count and labelling component</p></li>
-  <li>Validation: <p>Provide valuable actionable feedbackto users</p></li>
-  <li>Progress: <p>To check till where user have scrolled</p></li>
-  <li>Checkbox: <p>For remeber me in login page</p></li>
-  <li>Alert: <p>To show when user logged in</p></li>
-  <li>Button: <p>Login button, sign up and google login button</p></li>
-</ol>
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
+
+### `npm test`
+
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `npm run build`
+
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
