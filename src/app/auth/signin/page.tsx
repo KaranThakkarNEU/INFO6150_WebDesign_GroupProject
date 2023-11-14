@@ -21,7 +21,11 @@ import * as Yup from 'yup';
 
 const styles = {
   companyName: {
-    textDecoration: 'underline',
+    background:
+      'radial-gradient(circle farthest-corner at bottom right, #121FCF 0%, #CF1512 100%)',
+    WebkitTextFillColor: 'transparent',
+    WebkitBackgroundClip: 'text',
+    fontSize: '2rem',
   },
   loginGrid: {
     height: '100vh',
@@ -99,6 +103,12 @@ export default function SignInPage() {
       ),
   });
 
+  const forgotPasswordSchema = Yup.object().shape({
+    forgotPassword: Yup.string()
+      .required('This is a required field')
+      .matches(/[a-z0-9]+@[a-z]+\.[a-z]{2,3}/, 'Enter valid email address'),
+  });
+
   const { values, errors, handleChange, handleSubmit, touched } = useFormik({
     initialValues: {
       email: '',
@@ -107,6 +117,22 @@ export default function SignInPage() {
     validationSchema: SigninSchema,
     onSubmit: (values, formikHelpers) => {
       console.log(values);
+      formikHelpers.resetForm();
+    },
+  });
+
+  const {
+    values: fpValues,
+    errors: fpErrors,
+    handleChange: fpHandleChange,
+    handleSubmit: fpHandleSubmit,
+    touched: fpTouched,
+  } = useFormik({
+    initialValues: {
+      forgotPassword: '',
+    },
+    validationSchema: forgotPasswordSchema,
+    onSubmit: (values, formikHelpers) => {
       formikHelpers.resetForm();
     },
   });
@@ -148,7 +174,7 @@ export default function SignInPage() {
               <OutlinedInput
                 id='password'
                 fullWidth
-                placeholder='ilovecodeab123'
+                placeholder='Ilovecodeab123'
                 type={showPassword ? 'text' : 'password'}
                 value={values.password}
                 error={Boolean(touched.password) && Boolean(errors.password)}
@@ -193,31 +219,39 @@ export default function SignInPage() {
         aria-labelledby='modal-modal-title'
         aria-describedby='modal-modal-description'
       >
-        <Box sx={styles.modal}>
+        <Box
+          sx={styles.modal}
+          component='form'
+          noValidate
+          onSubmit={fpHandleSubmit}
+        >
           <Typography variant='h6'>
             If you have forgotten your password you can reset it here.
           </Typography>
           <FormControl sx={{ m: 1, display: 'block' }} variant='outlined'>
-            <InputLabel htmlFor='email'>Email</InputLabel>
+            <InputLabel htmlFor='forgotPassword'>Email</InputLabel>
             <OutlinedInput
-              id='email'
+              id='forgotPassword'
               label='Email'
               fullWidth
-              value={values.email}
-              error={Boolean(touched.email) && Boolean(errors.email)}
+              value={fpValues.forgotPassword}
+              error={
+                Boolean(fpTouched.forgotPassword) &&
+                Boolean(fpErrors.forgotPassword)
+              }
               placeholder='karan@northeastern.edu'
-              onChange={handleChange}
+              onChange={fpHandleChange}
               startAdornment={
                 <InputAdornment position='start'>
                   <AccountCircle />
                 </InputAdornment>
               }
             />
-            {Boolean(touched.email) && errors.email ? (
-              <FormHelperText error>{errors.email}</FormHelperText>
+            {Boolean(fpTouched.forgotPassword) && fpErrors.forgotPassword ? (
+              <FormHelperText error>{fpErrors.forgotPassword}</FormHelperText>
             ) : null}
           </FormControl>
-          <Button sx={styles.resetBtn} variant='outlined'>
+          <Button sx={styles.resetBtn} variant='outlined' type='submit'>
             Reset Password
           </Button>
         </Box>
