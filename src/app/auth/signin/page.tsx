@@ -27,7 +27,7 @@ const styles = {
     WebkitBackgroundClip: 'text',
     fontSize: '2rem',
   },
-  loginGrid: {
+  signupGrid: {
     height: '100vh',
     width: '100%',
     justifyContent: 'center',
@@ -48,7 +48,8 @@ const styles = {
   },
   loginBtn: {
     textTransform: 'none',
-    width: '250px',
+    maxWidth: '250px',
+    width: '-webkit-fill-available',
     alignSelf: 'center',
     borderRadius: '20px',
     backgroundColor: '#0072ff',
@@ -139,9 +140,11 @@ export default function SignInPage() {
 
   return (
     <>
-      <Grid container xs={12} sx={styles.loginGrid}>
+      <Grid container xs={12} sx={styles.signupGrid}>
         <h2 style={styles.companyName}>CODEAB</h2>
-        <h1>Good to see you again</h1>
+        <Typography variant='h4' sx={{ margin: '0.67em' }}>
+          Good to see you again
+        </Typography>
         <Container maxWidth='sm'>
           <Box
             component='form'

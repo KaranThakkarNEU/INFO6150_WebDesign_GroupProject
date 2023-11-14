@@ -10,7 +10,9 @@ import {
   IconButton,
   InputAdornment,
   InputLabel,
+  Link,
   OutlinedInput,
+  Typography,
 } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import { useFormik } from 'formik';
@@ -25,7 +27,6 @@ const styles = {
     height: '100vh',
     width: '100%',
     justifyContent: 'center',
-    flexDirection: 'column',
     alignItems: 'center',
     backgroundColor: '#8EC5FC',
     backgroundImage: 'linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%)',
@@ -40,9 +41,10 @@ const styles = {
     gap: '30px',
     borderRadius: '10px',
   },
-  loginBtn: {
+  signupBtn: {
     textTransform: 'none',
-    width: '250px',
+    maxWidth: '250px',
+    width: '-webkit-fill-available',
     alignSelf: 'center',
     borderRadius: '20px',
     backgroundColor: '#0072ff',
@@ -122,10 +124,16 @@ export default function SignUpPage() {
 
   return (
     <>
-      <Grid container sx={styles.loginGrid}>
-        <h1>
+      <Grid
+        container
+        sx={{
+          ...styles.loginGrid,
+          flexDirection: { xs: 'row', sm: 'row', md: 'column' },
+        }}
+      >
+        <Typography variant='h4' sx={{ margin: '0.67em' }}>
           Create your <span style={styles.wordDecor}>CODEAB</span> Account
-        </h1>
+        </Typography>
         <Container maxWidth='sm'>
           <Box
             component='form'
@@ -140,6 +148,10 @@ export default function SignUpPage() {
               alignItems='flex-start'
               rowSpacing={{ xs: 1, sm: 2, md: 3 }}
             >
+              <Grid xs={12} sm={12} md={12}>
+                <Link href='signin'>Sign in</Link>
+              </Grid>
+
               <Grid xs={12} sm={6} md={6}>
                 <FormControl
                   sx={{ m: 1, width: '-webkit-fill-available' }}
@@ -301,7 +313,7 @@ export default function SignUpPage() {
               </Grid>
 
               <Grid xs={12} sx={{ textAlign: 'center' }}>
-                <Button variant='contained' sx={styles.loginBtn} type='submit'>
+                <Button variant='contained' sx={styles.signupBtn} type='submit'>
                   Sign up
                 </Button>
               </Grid>
