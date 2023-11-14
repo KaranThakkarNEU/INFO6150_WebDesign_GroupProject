@@ -1,14 +1,8 @@
-import { Inter } from 'next/font/google';
+import { ReactNode } from 'react';
 import './globals.css';
-import ThemeRegistry from '@/utility/ThemeRegistry/ThemeRegistry';
+import ThemeRegistry from '@/utility/ThemeRegistry/themeRegistry';
 
-const inter = Inter({ subsets: ['latin'] });
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang='en'>
       <body>

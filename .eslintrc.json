@@ -1,3 +1,15 @@
 {
-  "extends": ["next/core-web-vitals", "next", "prettier"]
+  "extends": ["next/core-web-vitals", "next", "prettier", "eslint:recommended"],
+  "plugins": ["unused-imports"],
+  "rules": {
+    "no-unused-vars": [
+      1,
+      {
+        "args": "none",
+        "varsIgnorePattern": "^_"
+      }
+    ],
+    "unused-imports/no-unused-imports": "error",
+    "no-duplicate-imports": [1, { "includeExports": true }]
+  }
 }
