@@ -1,32 +1,39 @@
 'use client';
 
-import * as React from 'react';
+import React, { useState, ReactNode } from 'react';
 import createCache from '@emotion/cache';
 import { useServerInsertedHTML } from 'next/navigation';
 import { CacheProvider as DefaultCacheProvider } from '@emotion/react';
 import type {
-  EmotionCache,
   Options as OptionsOfCreateCache,
+  EmotionCache,
 } from '@emotion/cache';
 
 export type NextAppDirEmotionCacheProviderProps = {
   /** This is the options passed to createCache() from 'import createCache from "@emotion/cache"' */
-  options: Omit<OptionsOfCreateCache, 'insertionPoint'>;
+  options: Omit<OptionsOfCreateCache, 'insertionPoint'> & {
+    prepend?: boolean;
+  };
   /** By default <CacheProvider /> from 'import { CacheProvider } from "@emotion/react"' */
   CacheProvider?: (props: {
     value: EmotionCache;
-    children: React.ReactNode;
+    children: ReactNode;
   }) => React.JSX.Element | null;
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
-// Adapted from https://github.com/garronej/tss-react/blob/main/src/next/appDir.tsx
-export default function NextAppDirEmotionCacheProvider(
+export function NextAppDirEmotionCacheProvider(
   props: NextAppDirEmotionCacheProviderProps
 ) {
-  const { options, CacheProvider = DefaultCacheProvider, children } = props;
+  const {
+    options: optionsWithPrepend,
+    CacheProvider = DefaultCacheProvider,
+    children,
+  } = props;
 
-  const [registry] = React.useState(() => {
+  const { prepend = false, ...options } = optionsWithPrepend;
+
+  const [{ cache, flush }] = useState(() => {
     const cache = createCache(options);
     cache.compat = true;
     const prevInsert = cache.insert;
@@ -36,7 +43,7 @@ export default function NextAppDirEmotionCacheProvider(
       if (cache.inserted[serialized.name] === undefined) {
         inserted.push({
           name: serialized.name,
-          isGlobal: !selector,
+          isGlobal: selector === '',
         });
       }
       return prevInsert(...args);
@@ -50,51 +57,60 @@ export default function NextAppDirEmotionCacheProvider(
   });
 
   useServerInsertedHTML(() => {
-    const inserted = registry.flush();
+    const inserted = flush();
     if (inserted.length === 0) {
       return null;
     }
     let styles = '';
-    let dataEmotionAttribute = registry.cache.key;
+    let dataEmotionAttribute = cache.key;
 
     const globals: {
       name: string;
       style: string;
     }[] = [];
 
-    inserted.forEach(({ name, isGlobal }) => {
-      const style = registry.cache.inserted[name];
+    for (const { name, isGlobal } of inserted) {
+      const style = cache.inserted[name];
 
-      if (typeof style !== 'boolean') {
-        if (isGlobal) {
-          globals.push({ name, style });
-        } else {
-          styles += style;
-          dataEmotionAttribute += ` ${name}`;
-        }
+      if (typeof style === 'boolean') {
+        continue;
       }
-    });
+
+      if (isGlobal) {
+        globals.push({ name, style });
+      } else {
+        styles += style;
+        dataEmotionAttribute += ` ${name}`;
+      }
+    }
+
+    const get__Html = (style: string) =>
+      prepend ? `@layer emotion {${style}}` : style;
 
     return (
-      <React.Fragment>
+      <>
         {globals.map(({ name, style }) => (
           <style
+            nonce={options.nonce}
             key={name}
-            data-emotion={`${registry.cache.key}-global ${name}`}
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{ __html: style }}
+            data-emotion={`${cache.key}-global ${name}`}
+            dangerouslySetInnerHTML={{ __html: get__Html(style) }}
           />
         ))}
-        {styles && (
+        {styles !== '' && (
           <style
+            nonce={options.nonce}
             data-emotion={dataEmotionAttribute}
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{ __html: styles }}
+            dangerouslySetInnerHTML={{
+              __html: get__Html(styles),
+            }}
           />
         )}
-      </React.Fragment>
+      </>
     );
   });
 
-  return <CacheProvider value={registry.cache}>{children}</CacheProvider>;
+  return <CacheProvider value={cache}>{children}</CacheProvider>;
 }
+
+export default NextAppDirEmotionCacheProvider;
