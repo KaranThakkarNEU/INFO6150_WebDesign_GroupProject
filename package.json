@@ -17,6 +17,7 @@
     "@mui/icons-material": "^5.14.16",
     "@mui/material": "^5.14.17",
     "eslint-config-prettier": "^9.0.0",
+    "firebase": "^10.6.0",
     "formik": "^2.4.5",
     "next": "14.0.1",
     "react": "^18",

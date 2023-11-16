@@ -18,6 +18,9 @@ import Grid from '@mui/material/Unstable_Grid2';
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import * as Yup from 'yup';
+import { auth } from '../../../../firebase/clientApp';
+import ErrorComponent from '@/components/error';
+import { ErrorProps } from '@/utility/models/error';
 
 const styles = {
   companyName: {
@@ -86,6 +89,11 @@ const styles = {
 };
 
 export default function SignInPage() {
+  const [alertMsg, setAlertMsg] = useState<ErrorProps>({
+    isActive: false,
+    message: '',
+    type: 'success',
+  });
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const [openForgotPassword, setOpenForgotPassword] = useState(false);
@@ -116,9 +124,27 @@ export default function SignInPage() {
       password: '',
     },
     validationSchema: SigninSchema,
-    onSubmit: (values, formikHelpers) => {
-      console.log(values);
-      formikHelpers.resetForm();
+    onSubmit: async (values, formikHelpers) => {
+      try {
+        await auth.signInWithEmailAndPassword(values.email, values.password);
+
+        setAlertMsg({
+          isActive: true,
+          message: 'Login succesful',
+          type: 'success',
+        });
+        clearAlertMsg();
+        formikHelpers.resetForm();
+      } catch (error: any) {
+        if (error.message.includes('invalid-login-credentials')) {
+          setAlertMsg({
+            isActive: true,
+            message: 'Invalid login credentials',
+            type: 'error',
+          });
+        }
+        clearAlertMsg();
+      }
     },
   });
 
@@ -138,8 +164,21 @@ export default function SignInPage() {
     },
   });
 
+  const clearAlertMsg = () => {
+    setTimeout(() => {
+      setAlertMsg({
+        isActive: false,
+        message: '',
+        type: 'success',
+      });
+    }, 3000);
+  };
+
   return (
     <>
+      {alertMsg.isActive ? (
+        <ErrorComponent message={alertMsg.message} type={alertMsg.type} />
+      ) : null}
       <Grid container xs={12} sx={styles.signupGrid}>
         <h2 style={styles.companyName}>CODEAB</h2>
         <Typography variant='h4' sx={{ margin: '0.67em' }}>

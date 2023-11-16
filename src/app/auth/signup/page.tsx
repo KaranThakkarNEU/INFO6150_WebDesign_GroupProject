@@ -18,6 +18,10 @@ import Grid from '@mui/material/Unstable_Grid2';
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import * as Yup from 'yup';
+import { auth } from '../../../../firebase/clientApp';
+import { ErrorProps } from '@/utility/models/error';
+import ErrorComponent from '@/components/error';
+import { useRouter } from 'next/navigation';
 
 const styles = {
   companyName: {
@@ -87,6 +91,12 @@ const styles = {
 };
 
 export default function SignUpPage() {
+  const [alertMsg, setAlertMsg] = useState<ErrorProps>({
+    isActive: false,
+    message: '',
+    type: 'success',
+  });
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -116,14 +126,52 @@ export default function SignUpPage() {
       confirmPassword: '',
     },
     validationSchema: SigninSchema,
-    onSubmit: (values, formikHelpers) => {
-      console.log(values);
-      formikHelpers.resetForm();
+    onSubmit: async (values, formikHelpers) => {
+      try {
+        const result = await auth.createUserWithEmailAndPassword(
+          values.email,
+          values.password
+        );
+
+        await result.user?.updateProfile({
+          displayName: `${values.firstName.trim()} ${values.lastName.trim()}`,
+        });
+
+        setAlertMsg({
+          isActive: true,
+          message: 'Account created successfully',
+          type: 'success',
+        });
+
+        clearAlertMsg();
+        formikHelpers.resetForm();
+        router.push('signin');
+      } catch (error) {
+        setAlertMsg({
+          isActive: true,
+          message: 'Email already in use, try different on',
+          type: 'error',
+        });
+        clearAlertMsg();
+      }
     },
   });
 
+  const clearAlertMsg = () => {
+    setTimeout(() => {
+      setAlertMsg({
+        isActive: false,
+        message: '',
+        type: 'success',
+      });
+    }, 3000);
+  };
+
   return (
     <>
+      {alertMsg.isActive ? (
+        <ErrorComponent message={alertMsg.message} type={alertMsg.type} />
+      ) : null}
       <Grid
         container
         sx={{
