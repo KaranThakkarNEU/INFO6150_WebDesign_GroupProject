@@ -22,7 +22,7 @@ import { auth } from '../../../../firebase/clientApp';
 import { ErrorProps } from '@/utility/models/error';
 import ErrorComponent from '@/components/error';
 import { useRouter } from 'next/navigation';
-import ProtectedRouteComponent from '@/components/protectedRouter';
+import ProtectedRouteComponent from '@/components/protectedRoute';
 
 const styles = {
   companyName: {

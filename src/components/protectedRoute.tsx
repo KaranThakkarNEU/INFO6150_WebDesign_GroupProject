@@ -29,15 +29,19 @@ const ProtectedRouteComponent: React.FC<ProtectedRouteProps> = ({
   children,
 }) => {
   const router = useRouter();
-  const { user, loading } = useAuth();
+  const { user, loading, pathname } = useAuth();
 
   useEffect(() => {
     if (!loading && !user) {
-      router.replace('/auth/signin'); // Redirect to the login page if not authenticated
-    } else {
+      if (!pathname.includes('auth')) {
+        router.replace('/auth/signin'); // Redirect to the login page if not authenticated
+      } else {
+        return;
+      }
+    } else if (user && loading) {
       router.replace('/'); // Redirect to the dashboard page if authenticated
     }
-  }, [user, loading, router]);
+  }, [user, loading, router, pathname]);
 
   if (loading) {
     // You can show a loading spinner or another component while authentication is in progress
