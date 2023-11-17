@@ -22,6 +22,7 @@ import { auth } from '../../../../firebase/clientApp';
 import { ErrorProps } from '@/utility/models/error';
 import ErrorComponent from '@/components/error';
 import { useRouter } from 'next/navigation';
+import ProtectedRouteComponent from '@/components/protectedRouter';
 
 const styles = {
   companyName: {
@@ -168,7 +169,7 @@ export default function SignUpPage() {
   };
 
   return (
-    <>
+    <ProtectedRouteComponent>
       {alertMsg.isActive ? (
         <ErrorComponent message={alertMsg.message} type={alertMsg.type} />
       ) : null}
@@ -369,6 +370,6 @@ export default function SignUpPage() {
           </Box>
         </Container>
       </Grid>
-    </>
+    </ProtectedRouteComponent>
   );
 }

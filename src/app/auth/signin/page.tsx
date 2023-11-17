@@ -21,6 +21,8 @@ import * as Yup from 'yup';
 import { auth } from '../../../../firebase/clientApp';
 import ErrorComponent from '@/components/error';
 import { ErrorProps } from '@/utility/models/error';
+import { useRouter } from 'next/navigation';
+import ProtectedRouteComponent from '@/components/protectedRouter';
 
 const styles = {
   companyName: {
@@ -89,6 +91,7 @@ const styles = {
 };
 
 export default function SignInPage() {
+  const router = useRouter();
   const [alertMsg, setAlertMsg] = useState<ErrorProps>({
     isActive: false,
     message: '',
@@ -135,6 +138,7 @@ export default function SignInPage() {
         });
         clearAlertMsg();
         formikHelpers.resetForm();
+        router.push('/');
       } catch (error: any) {
         if (error.message.includes('invalid-login-credentials')) {
           setAlertMsg({
@@ -175,7 +179,7 @@ export default function SignInPage() {
   };
 
   return (
-    <>
+    <ProtectedRouteComponent>
       {alertMsg.isActive ? (
         <ErrorComponent message={alertMsg.message} type={alertMsg.type} />
       ) : null}
@@ -298,6 +302,6 @@ export default function SignInPage() {
           </Button>
         </Box>
       </Modal>
-    </>
+    </ProtectedRouteComponent>
   );
 }
