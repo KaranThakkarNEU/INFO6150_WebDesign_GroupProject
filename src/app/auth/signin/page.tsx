@@ -22,7 +22,6 @@ import { auth } from '../../../../firebase/clientApp';
 import ErrorComponent from '@/components/error';
 import { ErrorProps } from '@/utility/models/error';
 import { useRouter } from 'next/navigation';
-import ProtectedRouteComponent from '@/components/protectedRoute';
 
 const styles = {
   companyName: {
@@ -179,7 +178,7 @@ export default function SignInPage() {
   };
 
   return (
-    <ProtectedRouteComponent>
+    <>
       {alertMsg.isActive ? (
         <ErrorComponent message={alertMsg.message} type={alertMsg.type} />
       ) : null}
@@ -302,6 +301,6 @@ export default function SignInPage() {
           </Button>
         </Box>
       </Modal>
-    </ProtectedRouteComponent>
+    </>
   );
 }

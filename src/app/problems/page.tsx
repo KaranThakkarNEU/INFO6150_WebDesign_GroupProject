@@ -12,6 +12,7 @@ import {
   Chip,
   Button,
 } from '@mui/material';
+import { useRouter } from 'next/navigation';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -44,19 +45,6 @@ const createData = (
   }
 };
 
-const getChipColor = (difficulty: string) => {
-  switch (difficulty.toLowerCase()) {
-    case 'easy':
-      return 'success';
-    case 'medium':
-      return 'warning';
-    case 'hard':
-      return 'error';
-    default:
-      return 'success';
-  }
-};
-
 const rows = [
   createData('1', 'Frozen yoghurt', 24, 'Easy'),
   createData('2', 'Ice cream sandwich', 37, 'Hard'),
@@ -66,6 +54,25 @@ const rows = [
 ];
 
 export default function ProblemsPage() {
+  const router = useRouter();
+
+  const handleProblemSlove = (id: string) => {
+    router.push(`/problems/${id}`);
+  };
+
+  const getChipColor = (difficulty: string) => {
+    switch (difficulty.toLowerCase()) {
+      case 'easy':
+        return 'success';
+      case 'medium':
+        return 'warning';
+      case 'hard':
+        return 'error';
+      default:
+        return 'success';
+    }
+  };
+
   return (
     <TableContainer
       component='div'
@@ -80,7 +87,7 @@ export default function ProblemsPage() {
             <StyledTableCell>Title</StyledTableCell>
             <StyledTableCell align='right'>Acceptance</StyledTableCell>
             <StyledTableCell align='right'>Difficulty</StyledTableCell>
-            <StyledTableCell align='right'>Slove</StyledTableCell>
+            <StyledTableCell align='right'>Practice</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -100,7 +107,13 @@ export default function ProblemsPage() {
                 />
               </StyledTableCell>
               <StyledTableCell align='right'>
-                <Button variant='contained'>Slove</Button>
+                <Button
+                  variant='contained'
+                  sx={{ textTransform: 'none' }}
+                  onClick={() => handleProblemSlove(row.id)}
+                >
+                  Slove
+                </Button>
               </StyledTableCell>
             </StyledTableRow>
           ))}

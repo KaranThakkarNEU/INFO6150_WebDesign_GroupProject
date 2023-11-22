@@ -1,6 +1,5 @@
 'use client';
 
-import ProtectedRouteComponent from '../components/protectedRoute';
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -66,7 +65,7 @@ export default function NavbarComponent({
   };
 
   return (
-    <ProtectedRouteComponent>
+    <>
       <AppBar position='static'>
         <Container maxWidth='xl'>
           <Toolbar disableGutters>
@@ -194,6 +193,6 @@ export default function NavbarComponent({
         </Container>
       </AppBar>
       {children}
-    </ProtectedRouteComponent>
+    </>
   );
 }
