@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Editor } from '@monaco-editor/react';
+import React, { useState, useRef } from 'react';
+import { Editor, Monaco } from '@monaco-editor/react';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
@@ -10,6 +10,9 @@ import FormControl from '@mui/material/FormControl';
 import { Box, Button, Chip, Typography } from '@mui/material';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import * as Y from 'yjs';
+import { WebrtcProvider } from 'y-webrtc';
+import { MonacoBinding } from 'y-monaco';
 
 export default function SloveProblemPage({
   params,
@@ -17,9 +20,28 @@ export default function SloveProblemPage({
   params: { id: string };
 }) {
   const [language, setLanguage] = useState('javascript');
+  const editorRef = useRef(null);
 
   const handleChange = (event: SelectChangeEvent) => {
     setLanguage(event.target.value);
+  };
+
+  const handleEditorDidMount = (editor: any, monaco: Monaco) => {
+    editorRef.current = editor;
+    // initialize yjs
+    const doc = new Y.Doc(); // a collection of shared objects
+
+    // connect to peers (or start connection) with webRTC
+    const provider = new WebrtcProvider('test-room', doc);
+    const type = doc.getText('monaco');
+
+    // Bind yjs to monaco editor
+    const binding = new MonacoBinding(
+      type,
+      editor.getModel(),
+      new Set([editor]),
+      provider.awareness
+    );
   };
 
   return (
@@ -133,7 +155,11 @@ export default function SloveProblemPage({
               >
                 Run
               </Button>
-              <Button startIcon={<CloudUploadIcon />} variant='contained'>
+              <Button
+                startIcon={<CloudUploadIcon />}
+                variant='contained'
+                color='success'
+              >
                 Submit
               </Button>
             </div>
@@ -143,7 +169,8 @@ export default function SloveProblemPage({
             width='-webkit-fill-available'
             theme='vs-dark'
             defaultLanguage={language}
-            defaultValue='// start sloving the problem'
+            defaultValue='// start sloving problem'
+            onMount={handleEditorDidMount}
             language={language}
             options={{
               fontSize: 16,

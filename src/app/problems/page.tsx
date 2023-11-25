@@ -56,7 +56,7 @@ const rows = [
 export default function ProblemsPage() {
   const router = useRouter();
 
-  const handleProblemSlove = (id: string) => {
+  const handleProblemSolve = (id: string) => {
     router.push(`/problems/${id}`);
   };
 
@@ -110,9 +110,9 @@ export default function ProblemsPage() {
                 <Button
                   variant='contained'
                   sx={{ textTransform: 'none' }}
-                  onClick={() => handleProblemSlove(row.id)}
+                  onClick={() => handleProblemSolve(row.id)}
                 >
-                  Slove
+                  Solve
                 </Button>
               </StyledTableCell>
             </StyledTableRow>
