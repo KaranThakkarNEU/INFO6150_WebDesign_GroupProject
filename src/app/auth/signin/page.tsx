@@ -18,7 +18,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import * as Yup from 'yup';
-import { auth } from '../../../../firebase/clientApp';
+import firebase, { auth } from '../../../../firebase/clientApp';
 import ErrorComponent from '@/components/error';
 import { ErrorProps } from '@/utility/models/error';
 import { useRouter } from 'next/navigation';
@@ -162,7 +162,28 @@ export default function SignInPage() {
       forgotPassword: '',
     },
     validationSchema: forgotPasswordSchema,
-    onSubmit: (values, formikHelpers) => {
+    onSubmit: async (values, formikHelpers) => {
+      try {
+        await firebase.auth().sendPasswordResetEmail(values.forgotPassword);
+        setAlertMsg({
+          isActive: true,
+          message: 'Password reset email sent',
+          type: 'success',
+        });
+        clearAlertMsg();
+        handleForgotPasswordClose();
+      } catch (error: any) {
+        console.log(error);
+        if (error.message.includes('user-not-found')) {
+          setAlertMsg({
+            isActive: true,
+            message: 'User not found',
+            type: 'error',
+          });
+        }
+        clearAlertMsg();
+      }
+
       formikHelpers.resetForm();
     },
   });
