@@ -56,7 +56,7 @@ export default function RankingsPage() {
       sx={{ padding: '20px', boxShadow: '1px 9px 17px -3px rgba(0,0,0,0.7)' }}
     >
       <Table
-        sx={{ minWidth: 700, borderRadius: '20px' }}
+        sx={{ minWidth: 700, borderRadius: '20px', overflow: 'hidden' }}
         aria-label='customized table'
       >
         <TableHead>

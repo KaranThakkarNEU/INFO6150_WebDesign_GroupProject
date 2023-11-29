@@ -1,5 +1,9 @@
 'use client';
 
+import ErrorComponent from '@/components/error';
+import axiosInstance from '@/utility/axios';
+import { IProblemsModel } from '@/utility/models/IProblems';
+import { ErrorProps } from '@/utility/models/error';
 import {
   TableContainer,
   Table,
@@ -11,8 +15,12 @@ import {
   tableCellClasses,
   Chip,
   Button,
+  Box,
+  Skeleton,
+  Paper,
 } from '@mui/material';
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -34,27 +42,46 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const createData = (
-  id: string,
-  title: string,
-  acceptance: number,
-  difficulty: string
-) => {
-  {
-    return { id, title, acceptance, difficulty };
-  }
-};
-
-const rows = [
-  createData('1', 'Frozen yoghurt', 24, 'Easy'),
-  createData('2', 'Ice cream sandwich', 37, 'Hard'),
-  createData('3', 'Eclair', 262, 'Medium'),
-  createData('4', 'Cupcake', 305, 'Easy'),
-  createData('5', 'Gingerbread', 356, 'Medium'),
-];
-
 export default function ProblemsPage() {
   const router = useRouter();
+  const [problemsData, setProblemsData] = useState<IProblemsModel[]>([]);
+  const [alertMsg, setAlertMsg] = useState<ErrorProps>({
+    isActive: false,
+    message: '',
+    type: 'success',
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axiosInstance.get('/getAllProblems');
+        setProblemsData(res.data.problems);
+        setAlertMsg({
+          isActive: true,
+          message: 'Problems fetched successfully',
+          type: 'success',
+        });
+      } catch (error) {
+        setAlertMsg({
+          isActive: true,
+          message: 'Failed to fetch problems',
+          type: 'error',
+        });
+      }
+      clearAlertMsg();
+    };
+    fetchData();
+  }, []);
+
+  const clearAlertMsg = () => {
+    setTimeout(() => {
+      setAlertMsg({
+        isActive: false,
+        message: '',
+        type: 'success',
+      });
+    }, 3000);
+  };
 
   const handleProblemSolve = (id: string) => {
     router.push(`/problems/${id}`);
@@ -74,51 +101,70 @@ export default function ProblemsPage() {
   };
 
   return (
-    <TableContainer
-      component='div'
-      sx={{ padding: '20px', boxShadow: '1px 9px 17px -3px rgba(0,0,0,0.7)' }}
-    >
-      <Table
-        sx={{ minWidth: 700, borderRadius: '20px' }}
-        aria-label='customized table'
-      >
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>Title</StyledTableCell>
-            <StyledTableCell align='right'>Acceptance</StyledTableCell>
-            <StyledTableCell align='right'>Difficulty</StyledTableCell>
-            <StyledTableCell align='right'>Practice</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.id}>
-              <StyledTableCell component='th' scope='row'>
-                {row.title}
-              </StyledTableCell>
-              <StyledTableCell align='right'>
-                {' '}
-                {row.acceptance}%
-              </StyledTableCell>
-              <StyledTableCell align='right'>
-                <Chip
-                  label={row.difficulty}
-                  color={getChipColor(row.difficulty)}
-                />
-              </StyledTableCell>
-              <StyledTableCell align='right'>
-                <Button
-                  variant='contained'
-                  sx={{ textTransform: 'none' }}
-                  onClick={() => handleProblemSolve(row.id)}
-                >
-                  Solve
-                </Button>
-              </StyledTableCell>
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <>
+      {alertMsg.isActive ? (
+        <ErrorComponent message={alertMsg.message} type={alertMsg.type} />
+      ) : null}
+      {problemsData.length === 0 ? (
+        <Box sx={{ width: '100vw', marginTop: '45px' }}>
+          <Skeleton animation='wave' />
+          <Skeleton animation='wave' />
+          <Skeleton animation='wave' />
+        </Box>
+      ) : (
+        <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+          <TableContainer
+            sx={{
+              padding: '20px',
+              boxShadow: '1px 9px 17px -3px rgba(0,0,0,0.7)',
+            }}
+          >
+            <Table
+              stickyHeader
+              sx={{ minWidth: 700, borderRadius: '20px', overflow: 'hidden' }}
+              aria-label='customized table'
+            >
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell>Title</StyledTableCell>
+                  <StyledTableCell align='right'>Acceptance</StyledTableCell>
+                  <StyledTableCell align='right'>Difficulty</StyledTableCell>
+                  <StyledTableCell align='right'>Practice</StyledTableCell>
+                </TableRow>
+              </TableHead>
+
+              <TableBody>
+                {problemsData.map((row) => (
+                  <StyledTableRow key={row._id}>
+                    <StyledTableCell component='th' scope='row'>
+                      {row.title}
+                    </StyledTableCell>
+                    <StyledTableCell align='right'>
+                      {' '}
+                      {row.acceptance}%
+                    </StyledTableCell>
+                    <StyledTableCell align='right'>
+                      <Chip
+                        label={row.difficulty}
+                        color={getChipColor(row.difficulty)}
+                      />
+                    </StyledTableCell>
+                    <StyledTableCell align='right'>
+                      <Button
+                        variant='contained'
+                        sx={{ textTransform: 'none' }}
+                        onClick={() => handleProblemSolve(row._id)}
+                      >
+                        Solve
+                      </Button>
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Paper>
+      )}
+    </>
   );
 }
