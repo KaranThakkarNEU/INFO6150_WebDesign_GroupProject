@@ -38,8 +38,10 @@ const ProtectedRouteComponent: React.FC<ProtectedRouteProps> = ({
       } else {
         return;
       }
-    } else if (user && loading) {
-      router.replace('/'); // Redirect to the dashboard page if authenticated
+    } else if (user && pathname.includes('auth')) {
+      router.replace('/groups'); // Redirect to the dashboard page if authenticated
+    } else {
+      return;
     }
   }, [user, loading, router, pathname]);
 

@@ -139,7 +139,10 @@ export default function SignInPage() {
         formikHelpers.resetForm();
         router.push('/');
       } catch (error: any) {
-        if (error.message.includes('invalid-login-credentials')) {
+        if (
+          error.message.includes('invalid-login-credentials') ||
+          error.message.includes('INVALID_EMAIL')
+        ) {
           setAlertMsg({
             isActive: true,
             message: 'Invalid login credentials',
@@ -173,7 +176,7 @@ export default function SignInPage() {
         clearAlertMsg();
         handleForgotPasswordClose();
       } catch (error: any) {
-        console.log(error);
+        error;
         if (error.message.includes('user-not-found')) {
           setAlertMsg({
             isActive: true,

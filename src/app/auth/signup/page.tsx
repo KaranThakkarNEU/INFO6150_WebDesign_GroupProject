@@ -21,7 +21,6 @@ import * as Yup from 'yup';
 import { auth } from '../../../../firebase/clientApp';
 import { ErrorProps } from '@/utility/models/error';
 import ErrorComponent from '@/components/error';
-import { useRouter } from 'next/navigation';
 
 const styles = {
   companyName: {
@@ -96,7 +95,6 @@ export default function SignUpPage() {
     message: '',
     type: 'success',
   });
-  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -145,7 +143,6 @@ export default function SignUpPage() {
 
         clearAlertMsg();
         formikHelpers.resetForm();
-        router.push('signin');
       } catch (error) {
         setAlertMsg({
           isActive: true,

@@ -54,7 +54,7 @@ export default function ProblemsPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axiosInstance.get('/getAllProblems');
+        const res = await axiosInstance.get('/problems');
         setProblemsData(res.data.problems);
         setAlertMsg({
           isActive: true,

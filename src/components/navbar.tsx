@@ -53,8 +53,8 @@ export default function NavbarComponent({
     setAnchorElUser(null);
   };
 
-  const handleLogout = () => {
-    auth.signOut();
+  const handleLogout = async () => {
+    await auth.signOut();
   };
 
   const getDisplayName = () => {
@@ -74,7 +74,7 @@ export default function NavbarComponent({
               variant='h6'
               noWrap
               component='a'
-              href='#app-bar-with-responsive-menu'
+              href='/groups'
               sx={{
                 mr: 2,
                 display: { xs: 'none', md: 'flex' },
@@ -131,7 +131,7 @@ export default function NavbarComponent({
               variant='h5'
               noWrap
               component='a'
-              href='#app-bar-with-responsive-menu'
+              href='/groups'
               sx={{
                 mr: 2,
                 display: { xs: 'flex', md: 'none' },
@@ -143,7 +143,7 @@ export default function NavbarComponent({
                 textDecoration: 'none',
               }}
             >
-              LOGO
+              CODEAB
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               {pages.map((page) => (
