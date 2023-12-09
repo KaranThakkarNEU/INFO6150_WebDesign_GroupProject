@@ -1,16 +1,8 @@
 import React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import ChatboxPage from '@/app/groups/[groupName]/page';
-import CardMedia from '@mui/material/CardMedia';
 import { useState } from 'react';
-import {
-  Button,
-  Typography,
-  CardActionArea,
-  CardActions,
-  Link,
-} from '@mui/material';
+import { Typography, CardActionArea } from '@mui/material';
 import Modal from './GroupCardDetailsModal';
 
 const GroupCard = (props: any) => {

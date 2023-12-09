@@ -1,18 +1,13 @@
 'use client';
 import { AppDataProvider, useAppData } from '@/contexts/AppDataProvider';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import GroupCard from '../../components/GroupCard';
-import GroupChatboxPage from './[groupName]/page';
 import { Button, Typography, Grid, Box, Paper } from '@mui/material';
-import { set, update } from 'firebase/database';
 import NewGroupModal from '@/components/NewGroupModal';
 
 import { useRouter as useNavigator } from 'next/navigation';
 
-import { useRouter } from 'next/dist/client/router';
 import CircularProgress from '@mui/material/CircularProgress';
-import { auth } from '../../../firebase/clientApp';
 import { useAuth } from '@/utility/context/auth';
 
 const GroupsPage = () => {
@@ -122,13 +117,14 @@ const GroupsPage = () => {
                         marginLeft: '5px',
                       }}
                     >
-                      You haven't joined any group.
+                      You havent joined any group.
                     </Typography>
                   </div>
                 ) : (
                   myGroups.map((group: any) => {
                     return (
                       <GroupCard
+                        key={group._id}
                         groupId={group._id}
                         title={group.groupName}
                         description={group.groupDescription}
@@ -154,6 +150,7 @@ const GroupsPage = () => {
                 {otherGroups.map((group: any) => {
                   return (
                     <GroupCard
+                      key={group._id}
                       groupId={group._id}
                       title={group.groupName}
                       description={group.groupDescription}

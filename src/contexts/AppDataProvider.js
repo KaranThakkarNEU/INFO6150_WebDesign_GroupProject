@@ -1,7 +1,7 @@
 'use client';
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import axios from 'axios';
 import { useAuth } from '@/utility/context/auth';
+import axiosInstance from '@/utility/axios';
 
 const AppDataContext = createContext();
 
@@ -60,8 +60,8 @@ export const AppDataProvider = ({ children }) => {
     }
   };
   const fetchGroups = async () => {
-    await axios
-      .get('http://localhost:8000/api/groups')
+    await axiosInstance
+      .get('/groups')
       .then((res) => {
         setGroups(res.data);
         // console.log(res.data);
@@ -81,8 +81,8 @@ export const AppDataProvider = ({ children }) => {
       },
     };
 
-    await axios
-      .post('http://localhost:8000/api/groups/addNewGroup', postData)
+    await axiosInstance
+      .post('/groups/addNewGroup', postData)
       .then((response) => {
         // console.log('Response:', response.data);
         fetchGroups();
@@ -99,11 +99,8 @@ export const AppDataProvider = ({ children }) => {
       username: userName,
     };
 
-    await axios
-      .put(
-        `http://localhost:8000/api/groups/addGroupParticipant?groupId=${groupId}`,
-        putData
-      )
+    await axiosInstance
+      .put(`/groups/addGroupParticipant?groupId=${groupId}`, putData)
       .then((response) => {
         // console.log('Response:', response.data);
         fetchGroups();
