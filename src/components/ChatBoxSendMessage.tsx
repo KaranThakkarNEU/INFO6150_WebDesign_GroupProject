@@ -5,7 +5,7 @@ import SendIcon from '@mui/icons-material/Send';
 import { AppDataProvider, useAppData } from '@/contexts/AppDataProvider';
 
 const ChatBoxSendMessage = (props: any) => {
-  const { sendMessage, currentUser, groupId } = props;
+  const { sendMessage, currentUser, groupId, scroll, scrollEvent } = props;
   // const { messages, setMessages } = useAppData();
   const [text, setText] = useState('');
   const onInputChange = (e: any) => {
@@ -13,6 +13,15 @@ const ChatBoxSendMessage = (props: any) => {
   };
   const onSend = () => {
     sendMessage(groupId, text, currentUser.displayName);
+    setText('');
+    // scroll.current.scrollIntoView({ behavior: 'smooth' });
+    scrollEvent();
+  };
+  const handleKeyPress = (event: any) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      onSend();
+    }
   };
   return (
     <Box
@@ -49,6 +58,8 @@ const ChatBoxSendMessage = (props: any) => {
           id='search-bar'
           className='text'
           onChange={onInputChange}
+          onKeyUp={handleKeyPress}
+          value={text}
           placeholder='Send Message...'
           size='small'
           sx={{

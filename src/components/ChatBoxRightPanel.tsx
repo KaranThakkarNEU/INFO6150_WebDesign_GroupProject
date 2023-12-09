@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Box, TextField, IconButton, Grid } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import ChatBoxMessages from './ChatBoxMessages';
@@ -8,7 +8,7 @@ import 'firebase/compat/firestore';
 import { db } from '../../firebase/clientApp';
 
 const ChatboxRightPanel = (props: any) => {
-  const { groupId, currentUser } = props;
+  const { groupId, currentUser, scroll, scrollEvent } = props;
   const [messages, setMessages] = useState();
 
   let isSendingMessage = false;
@@ -16,7 +16,7 @@ const ChatboxRightPanel = (props: any) => {
     const message = {
       text: text,
       sender: sender,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(), // Current timestamp
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     };
 
     if (!isSendingMessage) {
@@ -48,6 +48,7 @@ const ChatboxRightPanel = (props: any) => {
           groupId={groupId}
           messages={messages}
           currentUser={currentUser}
+          scroll={scroll}
         />
       </Grid>
       <Grid item>
@@ -55,6 +56,8 @@ const ChatboxRightPanel = (props: any) => {
           sendMessage={sendMessage}
           currentUser={currentUser}
           groupId={groupId}
+          scroll={scroll}
+          scrollEvent={scrollEvent}
         />
       </Grid>
     </Grid>

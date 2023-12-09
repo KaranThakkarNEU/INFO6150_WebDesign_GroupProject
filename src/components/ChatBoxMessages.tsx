@@ -11,10 +11,12 @@ import {
   Typography,
 } from '@mui/material';
 import { AppDataProvider, useAppData } from '@/contexts/AppDataProvider';
+import { useTheme } from '@mui/material/styles';
 
 const ChatBoxMessages = (props: any) => {
-  const { groupId, messages, currentUser } = props;
+  const { groupId, messages, currentUser, scroll } = props;
   const [updatedGroupId, setUpdatedGroupId] = useState(groupId);
+  const theme = useTheme();
   // const { groupId } = useAppData();
   const [message, setMessage] = useState([]);
   const getMessages = async (groupId: string) => {
@@ -128,12 +130,67 @@ const ChatBoxMessages = (props: any) => {
                 >
                   {text}
                 </Typography>
+                <div ref={scroll}></div>
               </CardContent>
             </Card>
           );
         })}
       </Container>
     </AppDataProvider>
+    // <AppDataProvider>
+    //   <Container
+    //     sx={{
+    //       display: 'flex',
+    //       flexDirection: 'column',
+    //       marginTop: '8px',
+    //       width: '100%',
+    //       height: 'calc(100vh - 158.5px)',
+    //       overflowY: 'scroll',
+    //       [theme.breakpoints.up('sm')]: {
+    //         flexDirection: 'row',
+    //         flexWrap: 'wrap',
+    //         justifyContent: 'flex-end',
+    //       },
+    //     }}
+    //   >
+    //     {message.map(({ id, text, createdAt, sender }) => {
+    //       // ...existing code...
+
+    //       return (
+    //         <Card
+    //           key={id}
+    //           sx={{
+    //             marginBottom: '8px',
+    //             width: 'fit-content',
+    //             height: sender === currentUser.displayName ? '40px' : '80px',
+    //             maxWidth: '50%',
+    //             minWidth: '200px',
+    //             flex: '0 0 auto',
+    //             backgroundColor:
+    //               sender === currentUser.displayName ? '#1876d2' : '#ecf4fd',
+    //             alignSelf:
+    //               sender === currentUser.displayName
+    //                 ? 'flex-end'
+    //                 : 'flex-start',
+    //             justifySelf:
+    //               sender === currentUser.displayName
+    //                 ? 'flex-end'
+    //                 : 'flex-start',
+    //             position: 'relative',
+    //             [theme.breakpoints.up('sm')]: {
+    //               width: 'auto',
+    //               height: 'fit-content',
+    //               maxWidth: '100%',
+    //               marginBottom: '16px',
+    //             },
+    //           }}
+    //         >
+    //           {/* ...existing code... */}
+    //         </Card>
+    //       );
+    //     })}
+    //   </Container>
+    // </AppDataProvider>
   );
 };
 

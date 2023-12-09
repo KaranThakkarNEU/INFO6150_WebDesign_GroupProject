@@ -2,7 +2,7 @@
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import TextField from '@mui/material/TextField';
@@ -34,17 +34,24 @@ const GroupChatboxPage = () => {
     contextVersion,
   } = useAppData();
   const { user } = useAuth();
-
+  const scroll = useRef<HTMLDivElement | null>(null);
+  // const [scrollEvent, setScrollEvent] = useState();
   const teamMembersArray = (groupId: String) => {
     return myGroupsMap?.get(groupId);
   };
 
   useEffect(() => {
     fetchGroups();
+    scrollEvent();
   }, []);
+
+  const scrollEvent = () => {
+    scroll?.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   useEffect(() => {
     refreshGroups();
+    scrollEvent();
   }, [groups]);
 
   useEffect(() => {
@@ -111,7 +118,12 @@ const GroupChatboxPage = () => {
             />
             <button>Send</button> */}
             {/* This button can be a Material-UI button */}
-            <ChatboxRightPanel groupId={groupId} currentUser={currentUser} />
+            <ChatboxRightPanel
+              groupId={groupId}
+              currentUser={currentUser}
+              scroll={scroll}
+              scrollEvent={scrollEvent}
+            />
             {/* </div> */}
           </Paper>
         </Grid>
