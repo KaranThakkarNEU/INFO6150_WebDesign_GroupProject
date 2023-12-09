@@ -46,7 +46,7 @@ export default function HomePage() {
 
   useEffect(() => {
     if (!user?.emailVerified) {
-      router.push('/groups');
+      router.push('/problems');
       return;
     } else {
       const fetchGroupsData = async () => {

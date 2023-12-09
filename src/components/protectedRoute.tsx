@@ -42,7 +42,7 @@ const ProtectedRouteComponent: React.FC<ProtectedRouteProps> = ({
       if (user.emailVerified) {
         router.replace('/'); // Redirect to the dashboard page if authenticated
       } else {
-        router.replace('/groups'); // Redirect to the dashboard page if authenticated
+        router.replace('/problems'); // Redirect to the dashboard page if authenticated
       }
     } else {
       return;
