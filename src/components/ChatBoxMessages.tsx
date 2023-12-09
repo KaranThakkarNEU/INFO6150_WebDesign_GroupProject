@@ -57,7 +57,6 @@ const ChatBoxMessages = (props: any) => {
               sx={{
                 marginBottom: '8px',
                 width: 'fit-content',
-                height: sender === currentUser.displayName ? '40px' : '80px',
                 maxWidth: '50%',
                 minWidth: '200px',
                 flex: '0 0 auto',
