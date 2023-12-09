@@ -1,17 +1,12 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import {
   Modal,
   Button,
   Typography,
   Box,
-  Tooltip,
-  IconButton,
-  Avatar,
   TextField,
   TextareaAutosize,
 } from '@mui/material';
-import { string } from 'yup';
 
 const NewGroupModal = (props: any) => {
   const {

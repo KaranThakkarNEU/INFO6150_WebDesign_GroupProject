@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Box, TextField, IconButton } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
 import SendIcon from '@mui/icons-material/Send';
-import { AppDataProvider, useAppData } from '@/contexts/AppDataProvider';
 
 const ChatBoxSendMessage = (props: any) => {
   const { sendMessage, currentUser, groupId } = props;

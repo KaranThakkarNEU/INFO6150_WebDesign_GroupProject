@@ -44,7 +44,9 @@ export const AppDataProvider = ({ children }) => {
 
       setMyGroups(updatedMyGroups);
       setOtherGroups(updatedOtherGroups);
+      // eslint-disable-next-line no-undef
       const myGroupsMap = new Map();
+      // eslint-disable-next-line no-undef
       const otherGroupsMap = new Map();
 
       myGroups.forEach((group) => {

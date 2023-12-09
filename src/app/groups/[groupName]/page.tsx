@@ -1,17 +1,9 @@
 'use client';
 
-import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import React, { useEffect, useState } from 'react';
-import IconButton from '@mui/material/IconButton';
-import SearchIcon from '@mui/icons-material/Search';
-import TextField from '@mui/material/TextField';
-import { useRouter as useNavigator } from 'next/navigation';
-import { useSearchParams } from 'next/navigation';
-import { Avatar, List, ListItem, Paper, Typography } from '@mui/material';
-import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
+import { Paper } from '@mui/material';
 import { AppDataProvider, useAppData } from '@/contexts/AppDataProvider';
-import ChatboxLeftPanel from '@/components/ChatBoxLeftPanel';
 import ChatboxRightPanel from '@/components/ChatBoxRightPanel';
 import ChatBoxTeamMembersSearch from '@/components/ChatBoxTeamMembersSearch';
 import { useAuth } from '@/utility/context/auth';

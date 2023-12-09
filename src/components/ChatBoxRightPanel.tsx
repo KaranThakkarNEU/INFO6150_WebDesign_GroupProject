@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Box, TextField, IconButton, Grid } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
+import { Grid } from '@mui/material';
 import ChatBoxMessages from './ChatBoxMessages';
 import ChatBoxSendMessage from './ChatBoxSendMessage';
 import firebase from 'firebase/compat/app';
