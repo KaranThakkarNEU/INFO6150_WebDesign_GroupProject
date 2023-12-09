@@ -39,7 +39,11 @@ const ProtectedRouteComponent: React.FC<ProtectedRouteProps> = ({
         return;
       }
     } else if (user && pathname.includes('auth')) {
-      router.replace('/groups'); // Redirect to the dashboard page if authenticated
+      if (user.emailVerified) {
+        router.replace('/'); // Redirect to the dashboard page if authenticated
+      } else {
+        router.replace('/groups'); // Redirect to the dashboard page if authenticated
+      }
     } else {
       return;
     }

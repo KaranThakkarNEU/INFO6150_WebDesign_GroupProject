@@ -8,6 +8,7 @@ import NavbarComponent from '@/components/navbar';
 import ProtectedRouteComponent from '@/components/protectedRoute';
 import { auth } from '../../firebase/clientApp';
 import firebase from 'firebase/compat/app';
+import { AppDataProvider } from '@/contexts/AppDataProvider';
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<firebase.User | null>(null);
@@ -31,7 +32,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               {!loading && !user ? (
                 children
               ) : (
-                <NavbarComponent>{children}</NavbarComponent>
+                <NavbarComponent>
+                  <AppDataProvider>{children}</AppDataProvider>
+                </NavbarComponent>
               )}
             </ThemeRegistry>
           </ProtectedRouteComponent>
