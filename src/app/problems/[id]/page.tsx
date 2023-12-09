@@ -132,7 +132,7 @@ export default function SloveProblemPage({
       const userId = auth.currentUser?.uid;
       const username = auth.currentUser?.displayName;
 
-      const res = await axiosInstance.put('/rankings/update', {
+      await axiosInstance.put('/rankings/update', {
         userId: userId,
         username: username,
       });
@@ -141,6 +141,7 @@ export default function SloveProblemPage({
         message: 'Ranking updated successfully',
         type: 'success',
       });
+      clearAlertMsg();
       setIsCodeSubmit(false);
     } catch (error) {
       setIsCodeSubmit(false);
@@ -148,21 +149,24 @@ export default function SloveProblemPage({
     }
   };
 
+  const clearAlertMsg = () => {
+    setTimeout(() => {
+      setAlertMsg({
+        isActive: false,
+        message: '',
+        type: 'success',
+      });
+    }, 3000);
+  };
+
   const handleEditorDidMount = (editor: any, monaco: Monaco) => {
     editorRef.current = editor;
-    if (checkRoomExists(params.id)) {
-      console.log('object');
-      return;
-    } else {
-      console.log('sdsds');
-      createNewRoom(params.id, editor);
-    }
+    createNewRoom(params.id, editorRef.current);
   };
 
   const checkRoomExists = (roomName: string) => {
     const doc = new Y.Doc();
     const provider = new WebrtcProvider(roomName, doc);
-    console.log(provider.awareness.getStates().size);
 
     // Check if there are any connected clients in the room
     return provider.awareness.getStates().size > 0;
@@ -177,7 +181,7 @@ export default function SloveProblemPage({
     const type = doc.getText('monaco');
 
     // Bind yjs to monaco editor
-    const binding = new MonacoBinding(
+    new MonacoBinding(
       type,
       editor.getModel(),
       new Set([editor]),
@@ -194,6 +198,7 @@ export default function SloveProblemPage({
         'Link copied to clipboard, share it with your friends and collab.',
       type: 'success',
     });
+    clearAlertMsg();
   };
 
   useEffect(() => {
