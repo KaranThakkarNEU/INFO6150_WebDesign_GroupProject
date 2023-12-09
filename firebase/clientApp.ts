@@ -2,6 +2,7 @@
 
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
 
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -18,6 +19,6 @@ const clientCredentials = {
 if (!firebase.apps.length) {
   firebase.initializeApp(clientCredentials);
 }
-
+export const db = firebase.firestore();
 export const auth = firebase.auth();
 export default firebase;
