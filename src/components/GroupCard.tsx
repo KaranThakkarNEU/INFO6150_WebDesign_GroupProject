@@ -61,7 +61,12 @@ const GroupCard = (props: any) => {
         sx={{ maxHeight: '400px', minHeight: '400px' }}
         onClick={handleCardClick}
       >
-        {/* <CardMedia component='img' height='140' image='' alt='green iguana' /> */}
+        <CardMedia
+          component='img'
+          height='250'
+          image='./assets/images/CodeWarriors.jpeg'
+          alt='Group Image'
+        />
         <CardContent component='div'>
           <Typography gutterBottom variant='h5' component='div'>
             {title}
