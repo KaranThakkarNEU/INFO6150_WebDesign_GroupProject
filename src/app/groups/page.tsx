@@ -17,12 +17,10 @@ const GroupsPage = () => {
     myGroups,
     otherGroups,
     addNewGroup,
-    myGroupsMap,
     otherGroupsMap,
     addParticipant,
     updateGroupId,
     contextVersion,
-    refreshGroups,
   } = useAppData();
   const { user } = useAuth();
   const [currentUser, setCurrentUser] = useState(user);

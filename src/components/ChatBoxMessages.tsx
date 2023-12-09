@@ -1,16 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../../firebase/clientApp';
-import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
-import {
-  Container,
-  TextField,
-  IconButton,
-  Card,
-  CardContent,
-  Typography,
-} from '@mui/material';
-import { AppDataProvider, useAppData } from '@/contexts/AppDataProvider';
+import { Container, Card, CardContent, Typography } from '@mui/material';
+import { AppDataProvider } from '@/contexts/AppDataProvider';
 
 const ChatBoxMessages = (props: any) => {
   const { groupId, messages, currentUser } = props;

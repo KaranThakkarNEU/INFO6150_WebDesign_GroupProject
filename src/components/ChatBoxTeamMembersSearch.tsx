@@ -3,12 +3,9 @@ import {
   Avatar,
   Box,
   CircularProgress,
-  IconButton,
   Paper,
-  TextField,
   Typography,
 } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
 
 const TeamMembersSearch = (props: any) => {
   const { teamData } = props;
@@ -93,6 +90,7 @@ const TeamMembersSearch = (props: any) => {
           <Box sx={{ marginTop: '40px' }}>
             {teamData?.map((member: any) => (
               <Box
+                key={member.id}
                 sx={{
                   height: '50px',
                   display: 'flex',

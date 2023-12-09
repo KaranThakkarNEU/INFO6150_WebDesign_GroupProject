@@ -1,15 +1,5 @@
 import React, { useState } from 'react';
-import {
-  Modal,
-  Button,
-  Typography,
-  Box,
-  Tooltip,
-  IconButton,
-  Avatar,
-} from '@mui/material';
-import { update } from 'firebase/database';
-import { string } from 'yup';
+import { Modal, Button, Typography, Box, Tooltip, Avatar } from '@mui/material';
 
 const GroupCardDetailsModal = (props: any) => {
   const {
@@ -84,7 +74,7 @@ const GroupCardDetailsModal = (props: any) => {
             {updatedTeamMembers?.map(
               (member: { username: string; displayName: string }) => {
                 return (
-                  <Tooltip title={member.username}>
+                  <Tooltip key={''} title={member.username}>
                     <Avatar sx={{ marginRight: '10px' }}>
                       {member.displayName}
                     </Avatar>
