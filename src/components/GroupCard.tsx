@@ -2,7 +2,7 @@ import React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import { useState } from 'react';
-import { Typography, CardActionArea } from '@mui/material';
+import { Typography, CardActionArea, CardMedia } from '@mui/material';
 import Modal from './GroupCardDetailsModal';
 
 const GroupCard = (props: any) => {
@@ -54,6 +54,12 @@ const GroupCard = (props: any) => {
         onClick={handleCardClick}
       >
         {/* <CardMedia component='img' height='140' image='' alt='green iguana' /> */}
+        <CardMedia
+          component='img'
+          height='250'
+          image='./assets/images/CodeWarriors.jpeg'
+          alt='Group Image'
+        />
         <CardContent component='div'>
           <Typography gutterBottom variant='h5' component='div'>
             {title}
